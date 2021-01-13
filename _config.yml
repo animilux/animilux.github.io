@@ -17,7 +17,7 @@ sass:
 permalink: /posts/:title/
 texture:
   title: Yong's blog
-  tagline: AI DeepLearning
+  tagline: AI / DeepLearning
   date_format: "%b %-d, %Y"
   style: black
   showNav: false
