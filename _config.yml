@@ -1,5 +1,5 @@
-title: Yi's Note
-author: Yi
+title: Yong's blog
+author: YongGi
 email: jok0905@naver.com
 description: > # this means to ignore newlines until "show_exerpts:"
   Write an awesome description for your new site here. You can edit this
@@ -16,8 +16,8 @@ sass:
 
 permalink: /posts/:title/
 texture:
-  title: Yi's Note
-  tagline: AI. DeepLearning
+  title: Yong's blog
+  tagline: AI DeepLearning
   date_format: "%b %-d, %Y"
   style: black
   showNav: false
