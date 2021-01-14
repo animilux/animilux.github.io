@@ -1,0 +1,3 @@
+I"j<p>GAN의 학습은 Generator와 Discriminator를 반복하여 학습해야 되기에 각각의 학습 횟수에 따라 mode collapse가 발생하기 쉽다는 불안정성을 가지고 있습니다. 
+이 논문은 cost function을 변경하는 것으로 이러한 GAN 학습의 불안정성을 개선하였다는 점에서 GAN 발전에 기여도가 높은</p>
+:ET

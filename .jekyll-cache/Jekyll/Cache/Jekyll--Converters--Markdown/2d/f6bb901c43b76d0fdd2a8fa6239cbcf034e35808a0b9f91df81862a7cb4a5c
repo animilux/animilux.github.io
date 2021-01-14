@@ -1,0 +1,3 @@
+I"X<p>GAN의 학습은 Generator와 Discriminator를 반복하여 학습해야 되기에 각각의 학습 횟수에 따라 mode collapse가 발생하기 쉽다는 불안정성을 가지고 있습니다. 
+리뷰할 논문은 2017년 ICML에 발표된 Wasserstein GAN으로, cost function을 변경하는 것으로 GAN 학습의 불안정성을</p>
+:ET
