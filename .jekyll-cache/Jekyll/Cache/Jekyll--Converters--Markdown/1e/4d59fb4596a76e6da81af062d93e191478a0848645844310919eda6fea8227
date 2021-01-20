@@ -1,0 +1,31 @@
+I"1	<p>GAN의 학습은 Generator와 Discriminator를 반복하여 학습해야 되기에 각각의 학습 횟수에 따라 mode collapse가 발생하기 쉽다는 불안정성을 가지고 있습니다. 
+이 논문은 cost function을 변경하는 것으로 이러한 GAN 학습의 불안정성을 개선하였다는 점에서 GAN 발전에 기여도가 높다고 볼 수 있습니다.</p>
+
+<h2 id="introdunction">Introdunction</h2>
+<p>확률분포를 학습한다는 것은 확률밀도를 정의하고 real data에 대해 확률 값을 최대화하는 문제를 푸는 것으로 접근할 수 있고, 확률 값을 최대화 하는 문제는 식으로 나타내면 다음과 같습니다.</p>
+
+<p><img src="https://latex.codecogs.com/svg.latex?\; \underset{\theta\in \mathbb{R}^{d}}{max}\frac{1}{m}\sum_{i=1}^{m}\log P_{\theta}(x^{(i)})" /></p>
+
+<p>이 식은 실제 데이터의 분포 <img src="https://latex.codecogs.com/svg.latex?\; P_{r}" />이 확률밀도함수 <img src="https://latex.codecogs.com/svg.latex?\; P_{\theta}" />를 따른 다고 가정하면 Kullback-Leibler divergence 를 최소화 하는 것으로 풀 수 있습니다.</p>
+
+<p><img src="https://latex.codecogs.com/svg.latex?\; \min KL(\mathbb{P}_{r}||\mathbb{P}_{\theta})" /></p>
+
+<p>GAN의 학습을 위해 항상 KL divergence를 사용해야하는 것은 아니지만 일반적인 GAN의 loss함수는 아래와 같은 형태입니다.</p>
+
+<p><img src="/assets/img/GAN_loss.jpg" alt="GAN_loss" /></p>
+
+<p>이 식은 최적의 discriminator에 대한 generator의 식으로 바꾸면 Jensen-Shannon distance를 최소화하는 식이 됩니다. (식 유도는 GAN paper 참조)</p>
+
+<p><img src="/assets/img/GAN_loss_2.jpg" alt="GAN_loss2" /></p>
+
+<p>위와 같이 GAN loss는 JS distance를 포함하고 있기에 mode collapse나 adversarial training 과정에서 오는 학습의 불안정성 등 여러가지 단점을 가지고 있습니다.
+이 논문에선 실제 데이터와 생성 데이터의 분포 사이의 새로운 distance metric, EM distance를 제안함으로써 이러한 문제들을 해결했다고 합니다.</p>
+
+<h2 id="different-distances">Different Distances</h2>
+<p>두 확률분포 사이의 거리 metric은 다음과 같은 것들이 있습니다.</p>
+
+<p><img src="/assets/img/distance_metric.jpg" alt="Different_Distances" /></p>
+
+<p>TV</p>
+
+:ET
