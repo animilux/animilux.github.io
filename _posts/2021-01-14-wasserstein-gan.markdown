@@ -59,20 +59,64 @@ KL divergence는 두 분포의 차이를 계산할 때 많이 사용되는 metri
 
 ![EM_dist_example]({{site.baseurl}}/assets/img/em_dist_example.jpg)
 
-그럼, EM distance가 기존과 어떤 차이가 있는지 보겠습니다.
+그럼, EM distance가 기존과 어떤 차이가 있는지 보겠습니다.  
+uniform distribution을 따르는 <img src="https://latex.codecogs.com/svg.latex?\; Z ~ U[0,1]" />에 대해 두 확률분포 <img src="https://latex.codecogs.com/svg.latex?\; P_{0}" />, <img src="https://latex.codecogs.com/svg.latex?\; P_{\theta}" />를 다음과 같이 정의하겠습니다.  
+<img src="https://latex.codecogs.com/svg.latex?\; P_{0} = (0, Z) \in \mathbb{R}^{2} " />   
+<img src="https://latex.codecogs.com/svg.latex?\; P_{\theta} = (\theta, Z) \in \mathbb{R}^{2} " />
 
-<------------- 작성중 ------------->
+그럼, 위에서 정의한 4가지 distance metric으로 두 확률분포 사이 거리를 계산해보겠습니다.
+
+![dist_example]({{site.baseurl}}/assets/img/dist_example.jpg)
+
+Wasserstein distance(EM distance)를 제외한 다른 metric은 모두 <img src="https://latex.codecogs.com/svg.latex?\; \theta=0 " /> 에서 continuous하지 않습니다.
+이 말은 gradient값 또한 continuous하지 않다는 것이고, 확률분포 <img src="https://latex.codecogs.com/svg.latex?\; P_{\theta}" />를 <img src="https://latex.codecogs.com/svg.latex?\; P_{0}" />에 가깝게 학습할 수 없다는 뜻이 됩니다.  
+이 예에서는 학습해야 하는 분포와 target 분포 사이의 intersection이 없는 상황을 가정했는데, 실제로 generator 학습 초기에는 real data와 전혀 상관없는 이미지가 생성되기에 이런 상황은 자주 일어난다고 볼 수 있습니다. 즉, 다른 metric과 달리 항상 유의미한 distance값을 가지는 EM distance가 이론적으로도 적절한 metric이라고 볼 수 있습니다.
+
+## Train
+EM distance가 확률분포를 학습할 때 유의미하다는 것은 알았지만 infimum을 구하는 문제는 실제 neural network로 구현하기 어려움이 있습니다. 논문에선 이 부분을 해결하기 위해 Kantorovich-Rubinstein duality를 이용하여 Wasserstein distance를 아래와 같이 정의합니다. 
+
+![W_dist]({{site.baseurl}}/assets/img/W_dist.jpg)
+
+논문에서 Theorem 1~3을 통해 Wasserstein distance의 연속성과 미분가능성, 분포의 수렴성, gradient의 형태 등에 대해 증명하고 있는데, 이 부분을 모두 커버하긴 어려움이 있기에 이 페이지에선
+infimum값을 계산해야하는 EM distance 식이 Kantorovich-Rubinstein dualtiy를 이용하면 아래와 같이 maximum 값을 해결하는 것으로 바뀌고, 이 때 1-Lipschitz로 f를 제약한다 정도로 정리하겠습니다.
+
+![W_dist2]({{site.baseurl}}/assets/img/max_problem_w_dist.jpg)
+
+학습 알고리즘에서 특이한 점은 discriminator를 논문에선 critic으로 명명하며, generator와 discriminator를 비슷하게 학습했던 일반적인 GAN과 달리 w-gan의 학습은
+critic을 5번 학습하고 generator를 한 번 학습한다는 점입니다. 또한, Lipschitz condition으로 critic을 제한하기위해 weight clipping이라는 단순한 방법을 사용하는데,
+w-gan의 문제는 많은 부분 여기서 발생하게 됩니다. 후속 논문에서 간단한 loss term을 추가하는 것으로 이 문제를 해결하였고 해당 논문도 Reference에 추가하였으니 참고하셔도 좋을 것 같습니다.
+
+![algorithm]({{site.baseurl}}/assets/img/w-gan_training_algorithm.jpg)
+
+## Results
+마지막으로 w-gan의 학습 결과와 conclusion에 대해 간단하게 정리하였습니다.
+
+![gradient_graph]({{site.baseurl}}/assets/img/gradient_graph.jpg)
+
+위 그림은 Gaussian 분포를 두 개 정의하였을 때, 일반적인 GAN과 W-GAN의 gradient의 차이에 대해서 보여주고 있습니다. 두 분포의 intersection이 없을 때, 일반적인 GAN은 vanishing gradients
+문제가 발생하지만 W-GAN은 모든 구간에서 유의미한 gradient값을 가지고 있습니다.
+
+![result_graph]({{site.baseurl}}/assets/img/w-gan_result_graph.jpg)
+
+wasserstein distance는 또한 GAN의 성능 평가 지표로도 유의미해 보입니다. 위 첫번째와 두번째 그림은 각각 MLP와 DCGAN으로 학습하였을 때, iteration이 진행됨에 따라 wasserstein distance의 변화를 보여줍니다. distance 값이 작아질 수록 육안으로도 이미지가 잘 생성되었음을 확인할 수 있습니다. 반면, 세번째 그림은 학습이 잘 되지 않은 GAN의 경우 wasserstein distance값도 크게 변화가 없는 것을 볼 수 있습니다.
+
+## Conclusion
+* 새로운 distance metric의 정의하여 train 과정의 안정성을 높였다.
+* mode collapse 문제를 해결하였다.
+* loss 값이 생성된 이미지의 평가 지표로도 유용하다.
+* Adam 같은 momentum-based optimizer가 잘 동작하지 않아 학습 속도가 느리다는 단점이 있다.
 
 ## Reference
 paper :  
-https://arxiv.org/abs/1406.2661  
-https://arxiv.org/abs/1701.07875  
-https://arxiv.org/abs/1704.00028  
+GAN : https://arxiv.org/abs/1406.2661  
+Wasserstein GAN : https://arxiv.org/abs/1701.07875  
+Improved Training of Wasserstein GANs : https://arxiv.org/abs/1704.00028  
 
 etc :  
 https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i  
 https://www.youtube.com/watch?v=tKQwlf-DAl0  
 https://jonathan-hui.medium.com/gan-wasserstein-gan-wgan-gp-6a1a2aa1b490  
+https://www.youtube.com/watch?v=gPDShRk3odk
 
 
 
