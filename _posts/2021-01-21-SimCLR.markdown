@@ -1,0 +1,32 @@
+---
+layout: post
+title: "논문 리뷰 : A Simple Framework for Contrastive Learning of Visual Representations"
+date: 2021-01-20 17:00:00 +0300
+description: # Add post description (optional)
+img: post2/SimCLR.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
+tags: [representation, contrastive learning, augmentation, self-supervised learning]
+---
+이 논문은 Geoffrey Hinton 교수님이 교신저자로 참여하신 논문인데요, 학습과정에서 augmentation과의 차이를 학습하는 것으로 image representation 성능을 크게 향상 시킨 논문입니다.
+
+
+
+<---------------------- 작성중 ---------------------->
+## reference 
+paper :  
+SimCLR : <a href="https://arxiv.org/abs/2002.05709">https://arxiv.org/abs/2002.05709</a>  
+
+etc :  
+The Illustrated SimCLR Framework : <a href="https://amitness.com/2020/03/illustrated-simclr/">https://amitness.com/2020/03/illustrated-simclr/</a>  
+PR-231 : <a href="https://www.youtube.com/watch?v=FWhM3juUM6s&t=1s">https://www.youtube.com/watch?v=FWhM3juUM6s&t=1s</a>
+
+
+  
+  
+
+
+
+
+
+
+
