@@ -1,0 +1,82 @@
+I"F<p>이 논문은 Google Brain에서 낸 논문으로, Geoffrey Hinton 교수님이 교신저자로 참여하신 논문인데요, 학습과정에서 augmentation과의 차이를 학습하는 것으로 image representation 성능을 크게 향상 시킨 논문입니다.</p>
+
+<h2 id="intro">Intro</h2>
+<p>이 논문에선 contrastive self-supervised learning을 제안하였는데, 이 구조는 복잡하지 않으며 별도의 memory bank가 필요하지 않다는 데에서 이전 연구들과 차이가 있습니다.
+논문에서 입증한 바는 크게 3가지 입니다.</p>
+<ul>
+  <li>data augmentation 조합이 SimCLR 구조에서 중요한 역할을 한다.</li>
+  <li>representation과 contrasitve loss 사이의 non-linear transformation이 representation 성능을 향상시킨다.</li>
+  <li>contrastive learning은 batch size와 training step이 클 때 효과적이다.</li>
+</ul>
+
+<p>이미지에 대한 representation learning은 크게 generative와 discriminative로 나눠집니다.
+generative 접근방식은 말 그대로 이미지를 reproducing하는 과정에서 유의미한 representation을 학습하는 방식이고,
+discriminative는 pretext를 정의하고 이에 맞는 objective function을 정의하는 방식입니다.</p>
+
+<p>이 논문에선 discriminative 방법 중 하나인 contrastive learning을 사용하였고, 다양한 실험을 통해 효율적으로 representation을 학습할 수 있는 구조를 제안하고 있습니다.</p>
+
+<h2 id="framework">Framework</h2>
+<p><img src="/assets/img/post2/algorithm.jpg" alt="algorithm" />
+학습 알고리즘과 contrastive learning은 위 그림으로 모두 설명할 수 있습니다.</p>
+<ul>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; \tau" width="15" /> : 사용될 augmenation의 종류</li>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; t, t^{'}" /> : <img src="https://latex.codecogs.com/svg.latex?\; \tau" width="15" />에서 random sampling된 augmentation</li>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; \widetilde{x}_i, \widetilde{x}_j" /> : augmenation된 이미지</li>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; f(\cdot)" /> : resnet50 output에서 global average pooling된 값, 2048-dimension</li>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; g(\cdot)" /> : projection head로 두 층의 MLP와 activation 함수 relu가 사용됨, contrastive loss와 representation 사이의 non-linear representation이 적용되었다고 한 부분</li>
+  <li>ImageNet ILSVRC-2012 dataset 사용</li>
+  <li>Linear evaluation protocol으로 evaluation : representation까지의 parameter를 freeze하고 linear layer 하나만 추가하여 supervised learning, evaluation 진행</li>
+</ul>
+
+<p>그럼 loss 식의 구성을 하나씩 살펴보겠습니다.<br />
+<img src="/assets/img/post2/loss.jpg" alt="loss" /></p>
+
+<ul>
+  <li>similarity : cosine similarity</li>
+  <li><img src="https://latex.codecogs.com/svg.latex?\; \tau" /> : temperature scaling parameter</li>
+  <li>i, j : 같은 이미지에 대해 다른 augmentation을 적용한 두 이미지</li>
+  <li>N : batch size</li>
+</ul>
+
+<p>첫 번째 식을 보면 i와 j의 순서에 따라 loss값이 달라지는 것을 알 수 있는데, 이 때문에 두 번째 식 처럼 순서를 바꾼 두 loss 값을 더해주고 분모에 2를 추가해주는 형태가 됩니다.<br />
+아래 그림을 보면 위 loss 식을 직관적으로 이해할 수 있습니다.</p>
+
+<p><img src="/assets/img/post2/loss_example1.jpg" alt="loss_example1" /></p>
+
+<p>고양이와 코끼리 이미지 하나씩으로 구성된 batch_size=2의 batch를 가정해봅시다.<br />
+i, j가 augmentation된 고양이 이미지라고 하면 위 그림과 같이 분모는 i와 다른 이미지들의 similarity 합이 되고, 분자는 i와 j 사이의 similarity가 됩니다.<br />
+즉, 같은 이미지에 대한 다른 augmentation은 positive sample, 다른 이미지에 대한 augmentation 이미지는 모두 negative sample로 분류하여
+positive sample과의 similarity는 가깝게, negative sample과의 similarity는 멀게 학습하기 위한 loss 함수로 생각할 수 있습니다.</p>
+
+<p><img src="/assets/img/post2/loss_example2.jpg" alt="loss_example2" /></p>
+
+<p>그리고 전체 batch에 대한 loss를 구해보면 위 그림과 같이 분자에는 페어 순서에 따라 다른 loss값들을 모두 더해주고 분모는 batch_size * 2가 오게됩니다.<br />
+논문에선 batch_size를 256~8192까지 다양하게 실험을 하였다고 하는데, 8192개의 batch로 가정하면 이미지 하나당 분모에 더해지는 negative sample과의 similarity는 2*(8192-1) = 16382가 됩니다. 이렇게 큰 batch_size를 적용하기 위해 TPU core를 32~128개까지 사용했다고 하는데, Google의 자원력을 확인할 수 있는 부분인 것 같습니다.</p>
+
+<h2 id="augmentation">Augmentation</h2>
+<p>논문에서 사용한 augmentation 종류는 random crop(with flip and resize), color distortion, Gaussian blur 인데요, 이러한 augmentation을 사용하는 것으로
+이전까지 연구들에서 적용한 architecture의 변화를 대체했다고 합니다. 그리고 이러한 augmentation을 적용하기까지 실험적인 결과들이 있었는데요.</p>
+
+<p><img src="/assets/img/post2/augmentation_cm.jpg" alt="augmentation_cm" /></p>
+
+<p>위 matrix는 SimCLR Framework로 학습하고 Linear evaluation 방식으로 evaluation한 결과입니다. 위에서 설명한 framework에서 서로 다른 augmentation 두 개로 이미지를 생성했던 것과 달리, 이 실험에선 한 쪽 branch는 원본 이미지 그대로 사용하고, 다른 한쪽의 branch에서 위 matrix 각각에 해당하는 augmentation을 사용했습니다.<br />
+행과 열이 같은 부분에선 augmentation 하나만 사용한 것이고 다른 성분에 대해선 그림에 명시한대로 행, 열 순으로 sequential하게 두 개의 augmentation을 모두 사용한 것입니다.
+물론, ImageNet data는 사이즈가 일정하지 않기 때문에 전체 이미지에 대해서 crop, resize하는 과정이 선행으로 적용됩니다.</p>
+
+<p>matrix 중 눈에 띄는 성능을 보인 augmentation 조합이 crop과 color 입니다.</p>
+
+<p><img src="/assets/img/post2/color_aug.jpg" alt="color_aug" /></p>
+
+<p>위 히스토그램은 다른 두 이미지에 대한 crop 이미지의 pixel 히스토그램입니다.
+위</p>
+
+<p>&lt;———————- 작성중 ———————-&gt;</p>
+<h2 id="reference">reference</h2>
+<p>paper :<br />
+SimCLR : <a href="https://arxiv.org/abs/2002.05709">https://arxiv.org/abs/2002.05709</a></p>
+
+<p>etc :<br />
+The Illustrated SimCLR Framework : <a href="https://amitness.com/2020/03/illustrated-simclr/">https://amitness.com/2020/03/illustrated-simclr/</a><br />
+PR-231 : <a href="https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s">https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s</a></p>
+
+:ET
