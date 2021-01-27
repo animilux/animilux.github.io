@@ -127,7 +127,7 @@ Linear evaluation 결과를 비교하였을 때, Architecture별로 ResNet50을 
 * representation을 학습하는 것으로 supervised learning 수준의 성능을 달성하였다.
 
 
-## reference 
+## Reference 
 paper :  
 SimCLR : <a href="https://arxiv.org/abs/2002.05709">https://arxiv.org/abs/2002.05709</a>  
 
