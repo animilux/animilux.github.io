@@ -1,0 +1,13 @@
+I"5<p>Machine Learning에 대해 공부하신 분이라면 ML을 Supervised Learning, Unsupervised Learning, Reinforcement Learning으로 나누는 그림을 다양한 형태로 보셨으리라 생각됩니다.<br />
+여기서 Unsupervised Learning이란</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+SimCLR : <a href="https://arxiv.org/abs/2002.05709">https://arxiv.org/abs/2002.05709</a></p>
+
+<p>etc :<br />
+Title_img : <a href="https://quoracreative.com/article/machine-learning-marketing-Sales">https://quoracreative.com/article/machine-learning-marketing-Sales</a><br />
+PR-231 : <a href="https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s">https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s</a><br />
+<a href="https://creamnuts.github.io/paper/simCLR/">https://creamnuts.github.io/paper/simCLR/</a></p>
+
+:ET

@@ -1,0 +1,19 @@
+I"�<p>Machine Learning에 대해 공부하신 분이라면 ML을 Supervised Learning, Unsupervised Learning, Reinforcement Learning으로 나누는 그림을 다양한 형태로 보셨으리라 생각됩니다.
+여기서 Unsupervised Learning이란 Supervised Learning과는 다르게 Label이 없는 데이터로 학습하는 방식을 말하고, 대표적으로 Clustering과 Dimensionality Reduction이 있는데요.
+이런 내용이 Deep Neural Network를 활용하는 딥러닝에선 좀 더 확장될 수 있습니다.<br />
+이 포스트에선 최근 핫한 Deep Learning에서의 Unsupervised Learning이 가지는 의미와 활용 영역에 대해 정리해보았습니다.</p>
+
+<h2 id="deep-unsupervised-learning-이란">Deep Unsupervised Learning 이란?</h2>
+
+<p>앞에 Deep이 붙었지만 Label이 없는 데이터로 학습을 한다는 개념 자체는 같고 학습을 하기 위한</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+SimCLR : <a href="https://arxiv.org/abs/2002.05709">https://arxiv.org/abs/2002.05709</a></p>
+
+<p>etc :<br />
+Title_img : <a href="https://quoracreative.com/article/machine-learning-marketing-Sales">https://quoracreative.com/article/machine-learning-marketing-Sales</a><br />
+PR-231 : <a href="https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s">https://www.youtube.com/watch?v=FWhM3juUM6s&amp;t=1s</a><br />
+<a href="https://creamnuts.github.io/paper/simCLR/">https://creamnuts.github.io/paper/simCLR/</a></p>
+
+:ET
