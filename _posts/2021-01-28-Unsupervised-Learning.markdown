@@ -5,7 +5,7 @@ date: 2021-01-28 17:00:00 +0300
 description: # Add post description (optional)
 img: post3/brain_img.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [representation, contrastive learning, augmentation, self-supervised learning]
+tags: [Unsupervised Learning, Supervised Learning, Self-supervised Learning]
 ---
 Machine Learning에 대해 공부하신 분이라면 ML을 Supervised Learning, Unsupervised Learning, Reinforcement Learning으로 나누는 그림을 다양한 형태로 보셨으리라 생각됩니다.
 여기서 Unsupervised Learning이란 Supervised Learning과는 다르게 Label이 없는 데이터로 학습하는 방식을 말하고, 대표적으로 Clustering(ex. K-means)과 Dimensionality Reduction(ex. PCA)이 있는데요.
