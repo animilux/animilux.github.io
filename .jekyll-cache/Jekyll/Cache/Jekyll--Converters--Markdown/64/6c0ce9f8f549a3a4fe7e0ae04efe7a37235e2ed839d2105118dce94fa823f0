@@ -1,0 +1,13 @@
+I"�<p>이 논문은 Facebook AI에서 발표하였고, 이미지 Representation Learning 분야에서 SimCLR과 라이벌 격인 논문입니다. SimCLR처럼 Contrastive Learning을 사용하였으며 momentum encoder를 사용하는 부분이 가장 큰 차이라고 할 수 있을 것 같습니다.</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1911.05722​">Momentum Contrast for Unsupervised Visual Representation Learning</a><br />
+<a href="https://arxiv.org/abs/2003.04297​​">Improved Baselines with Momentum Contrastive Learning</a></p>
+
+<p>etc : <br />
+<a href="https://www.youtube.com/watch?v=2Undxq7jlsA&amp;t=383s">PR-260: Momentum Contrast for Unsupervised Visual Representation Learning</a><br />
+<a href="https://velog.io/@tobigs-gm1/Self-Supervised-Learning">투빅스 생성모델 세미나 : Self-Supervised Learning</a><br />
+<a href="https://cool24151.tistory.com/82">https://cool24151.tistory.com/82</a></p>
+
+:ET

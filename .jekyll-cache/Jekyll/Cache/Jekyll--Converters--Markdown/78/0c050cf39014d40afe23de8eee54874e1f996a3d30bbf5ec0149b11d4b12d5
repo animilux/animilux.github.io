@@ -1,0 +1,28 @@
+I"B
+<p>이번 논문은 Image Representation Learning에서 SimCLR과 MoCo의 성능을 모두 뛰어넘었다고 하는 BYOL 입니다. Google DeepMind와 Imperial College에서 발표하였고, 기존 연구들에 비해 Supervised Learning 성능(ResNet50, ImageNet acc 기준)에 가장 근접한 결과를 보여주고 있습니다.</p>
+
+<h2 id="intro">Intro</h2>
+<p>Image representation learning 및 Unsupervised learning 분야에서 MoCo, SimCLR 등이 높은 성능을 보여주었지만, 이러한 선행 연구들에선 공통적으로, 적절한 augmentation의 사용과 학습 과정에서 많은 negative sample을 보는 것이 중요했습니다. 각 연구들에선 ImageNet data에 대해 실험을 통해 적절한 Augmentation과 batch size를 설정했지만, 이 값들은 data domain에 따라 달라질 수 있는 값들입니다. 즉, custom data에 적용할 경우, 대량의 Unlabeled data와 소량의 Labeled data를 사용한 Semi-Supervised Learning을 적용한다고 생각하면, 적절한 Augmentation 선정과 사용가능한 resource 내에서 batch size의 설정 등이 많은 실험을 필요로 할 것입니다.</p>
+
+<p>이 논문에선 이전 연구들에 비해 batch size와 augmentation에 대한 robustness를 증가시키면서, Image representation learning 성능도 개선된 결과를 보여줍니다. 특히, 학습 과정에서 negative sample을 전혀 사용하지 않았다는 점이 이전 연구와는 가장 큰 차이라고 할 수 있습니다. 두 개의 neural network을 사용하고 이 중 하나를 target network로 사용하는 것이 핵심 아이디어 입니다.</p>
+
+<h2 id="methods">Methods</h2>
+<p>논문의 motivation은 간단한 실험에서 출발합니다. 아래 그림은 제가 논문”HOYA012’S RESEARCH BLOG”에서 참조하였습니다.</p>
+
+<h2 id="results">Results</h2>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>&lt;—– 작성중 —–&gt;</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/2006.07733​">Bootstrap Your Own Latent A New Approach to Self-Supervised Learning</a></p>
+
+<p>etc : <br />
+<a href="https://hoya012.github.io/blog/byol/">HOYA012’S RESEARCH BLOG : Bootstrap Your Own Latent： A New Approach to Self-Supervised Learning 리뷰</a><br />
+<a href="https://2-chae.github.io/category/2.papers/26">https://2-chae.github.io/category/2.papers/26</a><br />
+<a href="https://cool24151.tistory.com/85">https://cool24151.tistory.com/85</a> 
+<a href="https://www.youtube.com/watch?v=BuyWUSPJicM">딥러닝논문읽기모임 : 조용민 - Bootstrap Your Own Latent(BYOL)</a></p>
+
+:ET

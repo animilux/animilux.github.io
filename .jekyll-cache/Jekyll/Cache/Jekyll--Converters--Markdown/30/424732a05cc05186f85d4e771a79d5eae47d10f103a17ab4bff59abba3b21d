@@ -1,0 +1,17 @@
+I";<p>이번 논문은 Image Representation Learning에서 SimCLR과 MoCo의 성능을 모두 뛰어넘었다고 하는 BYOL 입니다. Google DeepMind와 Imperial College에서 발표하였고, 기존 연구들에 비해 Supervised Learning 성능(ResNet50, ImageNet acc 기준)에 가장 근접한 결과를 보여주고 있습니다.</p>
+
+<h2 id="intro">Intro</h2>
+<p>Image representation learning 및 Unsupervised learning 분야에서 높은 성능을 보여준 MoCo, SimCLR에 대한 내용도 정리했지만, 이러한 선행 연구들에선 공통적으로, 적절한 augmentation의 사용과 학습 과정에서 많은 negative sample을 보는 것의 중요성을 말했습니다.</p>
+
+<p>&lt;—– 작성중 —–&gt;</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/2006.07733​">Bootstrap Your Own Latent A New Approach to Self-Supervised Learning</a></p>
+
+<p>etc : <br />
+<a href="https://hoya012.github.io/blog/byol/">HOYA012’S RESEARCH BLOG : Bootstrap Your Own Latent： A New Approach to Self-Supervised Learning 리뷰</a><br />
+<a href="https://2-chae.github.io/category/2.papers/26">https://2-chae.github.io/category/2.papers/26</a><br />
+<a href="https://www.youtube.com/watch?v=BuyWUSPJicM">딥러닝논문읽기모임 : 조용민 - Bootstrap Your Own Latent(BYOL)</a></p>
+
+:ET
