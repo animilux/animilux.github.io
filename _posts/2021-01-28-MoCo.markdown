@@ -5,7 +5,7 @@ date: 2021-01-29 17:00:00 +0300
 description: # Add post description (optional)
 img: post4/moco_thumbs.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [Unsupervised Learning, Representation Learning, Contrastive Learning, memory bank, momentum encoder]
+tags: [Unsupervised Learning, Representation Learning, Contrastive Learning, memory bank, momentum encoder, InfoNCE, negative sample, dynamic dictionary, Facebook AI Research]
 ---
 이 논문은 Facebook AI에서 발표하였고, 이미지 Representation Learning 분야에서 SimCLR과 라이벌 격인 논문입니다. SimCLR처럼 Contrastive Learning을 사용하였으며 momentum encoder를 사용하는 부분이 가장 큰 차이라고 할 수 있을 것 같습니다.
 
