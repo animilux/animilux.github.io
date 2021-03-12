@@ -1,0 +1,47 @@
+I"<<p>이번 포스트는 Autoencoder 입니다. 데이터 압축을 목적으로 사용되기 시작해서 생성, 변환 등 다양한 목적에 활용되고 있는 Autoencoder의 종류에 대해 정리해보았습니다.</p>
+
+<h2 id="autoencoder">Autoencoder</h2>
+<p>Autoencoder는 high-dimensional data를 보다 저차원으로 압축하기 위한 모델입니다.</p>
+
+<p><img src="/assets/img/post6/post6_thumbs.jpg" alt="autoencoder" /></p>
+
+<p>압축을 위한 구조로 neural network를 사용하고 학습을 위한 target을 설정하기 위해
+reconstruction을 수행하는 decoder 구조를 bottleneck layer 뒤에 추가하게 됩니다. 
+데이터 압축, 주요 feature 추출을 위한 방법으로 PCA가 많이 알려져 있는데, Autoencoder의 neural network 구조에서 non-linearlity를 학습할 수 있게하는 
+activation function(ex. relu, sigmoid)부분을 제외하면 실제로 PCA와 비슷한 결과를 보여준다고 합니다.</p>
+
+<h2 id="denoising-autoencoder">Denoising Autoencoder</h2>
+<p>Identity function을 학습하는 Autoencoder는 overfitting의 우려가 크기에 제안된 것이 Denoising Autoencoder 입니다.</p>
+
+<p><img src="/assets/img/post6/dae.jpg" alt="dae" /></p>
+
+<p>Denoising Autoencoder는 input의 임의의 영역을 noise로 바꾸고, reconstruction은 noise의 영역까지 원본처럼 복원할 수 있도록 학습합니다.
+일부 노드를 지우는 것으로 생각하면 dropout과 같은 개념으로 생각할 수 있지만 dropout paper보다 4년이나 먼저 나온 연구라고 하네요.</p>
+
+<h2 id="sparse-autoencoder">Sparse Autoencoder</h2>
+<p>Sparse Autoencoder는 autoencoder의 hidden layer에 sparsity 조건을 추가한 것으로 생각할 수 있습니다.
+sparsity 조건이란 hidden unit의 activation을 제한하는 것인데, 이를 통해 hidden unit의 수가 커져도 좀 더 의미 있는 feature를 학습하는 것이 가능해집니다.
+Sparse Autoencoder 중 대표격인 k-Sparse Autoencoder의 결과를 보겠습니다.</p>
+
+<p><img src="/assets/img/post6/sae.jpg" alt="sae" /></p>
+
+<p>k-Sparse Autoencoder는 hidden layer의 activation 값 중 가장 큰 k개의 값만 사용합니다.<br />
+k 값이 작아질수록 적은 정보로 reconstruction을 수행해야 하기에 hidden layer에서는 점점 high level feature를 학습하게 됩니다.</p>
+
+<h2 id="convolutional-autoencoder">Convolutional Autoencoder</h2>
+<p>Autoencoder는 정형, 비정형(언어, 이미지 등)</p>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://dataplay.tistory.com/34">https://dataplay.tistory.com/34</a>
+<a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html">Lil’log : From Autoencoder to Beta-VAE</a></p>
+
+<!-- paper :  
+<a href="https://arxiv.org/abs/2006.07733​">Bootstrap Your Own Latent A New Approach to Self-Supervised Learning</a>
+
+etc :   
+<a href="https://hoya012.github.io/blog/byol/">HOYA012'S RESEARCH BLOG : Bootstrap Your Own Latent： A New Approach to Self-Supervised Learning 리뷰</a>  
+<a href="https://2-chae.github.io/category/2.papers/26">https://2-chae.github.io/category/2.papers/26</a>  
+<a href="https://cool24151.tistory.com/85">https://cool24151.tistory.com/85</a> 
+<a href="https://www.youtube.com/watch?v=BuyWUSPJicM">딥러닝논문읽기모임 : 조용민 - Bootstrap Your Own Latent(BYOL)</a>  -->
+
+:ET

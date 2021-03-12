@@ -1,0 +1,20 @@
+I"�<p>이번 포스트는 Autoencoder 입니다. 데이터 압축을 목적으로 사용되기 시작해서 생성, 변환 등 다양한 목적에 활용되고 있는 Autoencoder의 종류에 대해 정리해보았습니다.</p>
+
+<h2 id="autoencoder">Autoencoder</h2>
+<p>Autoencoder는 high-dimensional data를 보다 저차원으로 압축하기 위한 모델입니다. 압축을 위한 구조로 neural network를 사용하고 학습을 위한 target을 설정하기 위해
+reconstruction을 수행하는 decoder 구조를 bottleneck layer 뒤에 추가하게 됩니다. 
+데이터 압축, 주요 feature 추출을 위한 방법으로 PCA가 많이 알려져 있는데, Autoencoder</p>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://dataplay.tistory.com/34">https://dataplay.tistory.com/34</a></p>
+
+<!-- paper :  
+<a href="https://arxiv.org/abs/2006.07733​">Bootstrap Your Own Latent A New Approach to Self-Supervised Learning</a>
+
+etc :   
+<a href="https://hoya012.github.io/blog/byol/">HOYA012'S RESEARCH BLOG : Bootstrap Your Own Latent： A New Approach to Self-Supervised Learning 리뷰</a>  
+<a href="https://2-chae.github.io/category/2.papers/26">https://2-chae.github.io/category/2.papers/26</a>  
+<a href="https://cool24151.tistory.com/85">https://cool24151.tistory.com/85</a> 
+<a href="https://www.youtube.com/watch?v=BuyWUSPJicM">딥러닝논문읽기모임 : 조용민 - Bootstrap Your Own Latent(BYOL)</a>  -->
+
+:ET
