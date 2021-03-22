@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Autoencoder"
+title: "정리 : Autoencoder"
 date: 2021-03-11 17:00:00 +0300
 description: # Add post description (optional)
 img: post6/post6_thumbs.jpg # Add image post (optional)
@@ -49,9 +49,43 @@ Variational Autoencoder는 Autoencoder 구조에서 latent variable z를 얻기�
 이렇게 표면적으로는 Autoencoder에 일부 개념이 추가된 것으로 보이지만 목적 자체가 Autoencoder와는 다르기에 전혀 다른 모델로 구분되곤 합니다.
 앞서 언급했던 것처럼 Autoencoder는 데이터 압축, 즉 특정 maniflod를 학습하기 위한 모델인 반면, VAE는 GAN처럼 Generative model로 분류됩니다.
 
+
+### ELBOW
+![vae_loss]({{site.baseurl}}/assets/img/post6/vae_loss.jpg)
+
+VAE의 Loss는 위와 같이 정의되고 이를 유도할 때 보통은 log likelihood를 maximize 하는 식에서 출발하는 데, 
+개인적으로 이상적인 sampling 함수에 실제 sampling 함수를 근사시키는 term에서 출발하는 것이 좀 더 이해하기 쉬운 것 같습니다.  
+먼저, Generative model이라고 했으니 vector z에서 x를 생성하는 것으로 생각하고 x의 distribution을 encoding vector를 활용하여 다음과 같이 나타냅니다.  
+
+<img src="https://latex.codecogs.com/svg.latex?\; p_{\theta}(x^{(i)}) = \int p_{\theta}(x^{(i)}|z)p_{\theta}(z)dz " height=45 />
+
+여기서 모든 가능한 z의 분포에 대해 계산할 수 없기에, neural network 형태의 encoder가 등장하게 됩니다.  
+z를 다루기 쉬운 normal distribution으로 가정하고, x를 input으로 하는 이상적인 sampling 함수 <img src="https://latex.codecogs.com/svg.latex?\; q_{\phi}(z|x) " />를 정의하는 것입니다.  
+그리고 이 sampling 함수(이상적인)와 <img src="https://latex.codecogs.com/svg.latex?\; p_{\theta}(z|x) " /> 사이의 KL divergence를 minimize하는 것으로 목적함수를 정의합니다.  
+
+![vae_loss2]({{site.baseurl}}/assets/img/post6/vae_loss2.jpg)
+
+![vae_loss3]({{site.baseurl}}/assets/img/post6/vae_loss3.jpg)
+
+이렇게, 출발은 달랐지만 결국 <img src="https://latex.codecogs.com/svg.latex?\; \textbf{log} p_{\theta}(x) " /> 가 포함된 식이 유도되었고,  
+이상적인 sampling 함수 <img src="https://latex.codecogs.com/svg.latex?\; q_{\phi}(z|x) " /> 가 포함된 term은 직접 계산할 수 없기에, 
+<img src="https://latex.codecogs.com/svg.latex?\; \textbf{log} p_{\theta}(x) " /> 의 lower bound(ELBO)가 VAE의 Loss가 됩니다.  
+
+### Reparameterization Trick
+![vae_reparam]({{site.baseurl}}/assets/img/post6/vae_reparam.jpg)
+
+encoder를 sampling 함수로 사용하여 z를 sampling하는 부분은 backpropagation 식을 정의 할 때 문제가 될 수 있는데,
+VAE에선 이 부분을 간단한 trick으로 해결합니다.  
+위 그림처럼 normal distribution에서 sampling한 <img src="https://latex.codecogs.com/svg.latex?\; \epsilon \sim N(0,1)  " /> 값과 encoder의 output을 연산하여 z를 계산하게 하는 것으로
+backpropagation에 문제가 없게 하였습니다.
+
+이렇게 정의된 VAE는 여러 다양한 task 들에서 활용도가 높지만 단순히 Generative model의 성능 면에서는 GAN에 비해 뛰어나지 못하다는 단점이 있습니다.  
+특히, output 이미지가 전체적으로 blurry한 경향을 보이는데, 이는 Loss에 사용된 MSE term 의 한계로 볼 수 있습니다.
+
+## VQ-VAE
+
+
 < ------------------------ 작성중 ------------------------>
-<!-- latent variable z를 다루기 쉬운 normal distribution으로 가정하고 encoder의 output을 z에 근사시키는 방법으로 모델 학습을 진행합니다.
-이 방법으로 인해 VAE는 단순히 input을 외울 수 없게되고 latent variable의 수가 변해도 안정적인 성능을 보여준다고 합니다. -->
 
 
 
@@ -60,18 +94,8 @@ Variational Autoencoder는 Autoencoder 구조에서 latent variable z를 얻기�
 <a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html">Lil'log : From Autoencoder to Beta-VAE</a>  
 <a href="https://blog.naver.com/laonple/220943887634">라온피플 : 머신러닝 학습 방법(part 14) - AutoEncoder(5)</a>  
 <a href="https://blog.naver.com/laonple/220949087243">라온피플 : 머신러닝 학습 방법(part 14) - AutoEncoder(6)</a>  
-<a href="https://www.jeremyjordan.me/variational-autoencoders/">Jeremy Jordan : Variational autoencoders</a>  
-
-<!-- paper :  
-<a href="https://arxiv.org/abs/2006.07733​">Bootstrap Your Own Latent A New Approach to Self-Supervised Learning</a>
-
-etc :   
-<a href="https://hoya012.github.io/blog/byol/">HOYA012'S RESEARCH BLOG : Bootstrap Your Own Latent： A New Approach to Self-Supervised Learning 리뷰</a>  
-<a href="https://2-chae.github.io/category/2.papers/26">https://2-chae.github.io/category/2.papers/26</a>  
-<a href="https://cool24151.tistory.com/85">https://cool24151.tistory.com/85</a> 
-<a href="https://www.youtube.com/watch?v=BuyWUSPJicM">딥러닝논문읽기모임 : 조용민 - Bootstrap Your Own Latent(BYOL)</a>  -->
-  
-
+<a href="https://www.jeremyjordan.me/variational-autoencoders/">Jeremy Jordan : Variational autoencoders</a>   
+<a href="https://deepinsight.tistory.com/127">Steve-Lee's Deep Insight : [정리노트] [AutoEncoder의 모든것] Chap4. Variational AutoEncoder란 무엇인가(feat. 자세히 알아보자)</a> 
 
 
 

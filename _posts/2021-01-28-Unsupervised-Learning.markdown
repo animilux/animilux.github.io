@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Deep Unsupervised Learning 이란?"
+title: "정리 : Deep Unsupervised Learning"
 date: 2021-01-28 17:00:00 +0300
 description: # Add post description (optional)
 img: post3/brain_img.jpg # Add image post (optional)
