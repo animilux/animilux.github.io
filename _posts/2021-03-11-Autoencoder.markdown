@@ -82,13 +82,6 @@ backpropagation에 문제가 없게 하였습니다.
 이렇게 정의된 VAE는 여러 다양한 task 들에서 활용도가 높지만 단순히 Generative model의 성능 면에서는 GAN에 비해 뛰어나지 못하다는 단점이 있습니다.  
 특히, output 이미지가 전체적으로 blurry한 경향을 보이는데, 이는 Loss에 사용된 MSE term 의 한계로 볼 수 있습니다.
 
-## VQ-VAE
-
-
-< ------------------------ 작성중 ------------------------>
-
-
-
 
 ## Reference 
 <a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html">Lil'log : From Autoencoder to Beta-VAE</a>  

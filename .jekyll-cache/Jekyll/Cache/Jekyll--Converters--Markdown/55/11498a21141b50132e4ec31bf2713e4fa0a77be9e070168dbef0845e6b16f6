@@ -1,0 +1,32 @@
+I"�	<p>이번 포스트에선 Computer Vision에 Attention 또는 Transformer 구조가 사용된 몇 가지 논문에 대해 정리해 보았습니다.</p>
+
+<h2 id="show-attend-and-tell-neural-image-caption-generation-with-visual-attention">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</h2>
+<p>위는 2015년도에 나온 논문으로, ‘Attention is All You Need’를 통해 Transformer 형태의 Attention이 등장하기 이전에 Image Captioning task에 Attention의 개념을 사용했던 논문입니다.</p>
+
+<p><img src="/assets/img/post8/fig1.jpg" alt="img1" /></p>
+
+<p>Image Captioning은 image를 입력으로 받아 이를 설명하는 문장을 생성하는 task를 말합니다. 모델은 위 그림과 같이 CNN과 RNN이 모두 사용되는 구조이고, CNN의 output feature map이 RNN을 거치면서 vocab</p>
+
+<h2 id="an-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</h2>
+<p><img src="/assets/img/post8/thumbs.jpg" alt="img3" /></p>
+
+<h2 id="swin-transformer-hierarchical-vision-transformer-using-shifted-windows">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</h2>
+
+<h2 id="pyramid-vision-transformer-a-versatile-backbone-for-dense-prediction-without-convolutions">Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions</h2>
+
+<h2 id="mlp-mixer-an-all-mlp-architecture-for-vision">MLP-Mixer: An all-MLP Architecture for Vision</h2>
+
+<p>&lt;—————-작성 중—————-&gt;</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1502.03044">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a><br />
+<a href="https://arxiv.org/abs/2010.11929">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</a>  <br />
+<a href="https://arxiv.org/abs/2103.14030​">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</a>  <br />
+<a href="https://arxiv.org/abs/2102.12122​​">Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions</a>   <br />
+<a href="https://arxiv.org/abs/2105.01601​​">MLP-Mixer: An all-MLP Architecture for Vision</a></p>
+
+<p>other :<br />
+<a href="https://github.com/animilux/a-PyTorch-Tutorial-to-Image-Captioning​">a-PyTorch-Tutorial-to-Image-Captioning</a></p>
+
+:ET
