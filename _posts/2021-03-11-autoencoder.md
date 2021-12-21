@@ -56,30 +56,28 @@ VAE의 Loss는 위와 같이 정의되고 이를 유도할 때 보통은 log lik
 개인적으로 이상적인 sampling 함수에 실제 sampling 함수를 근사시키는 term에서 출발하는 것이 좀 더 이해하기 쉬운 것 같습니다.  
 먼저, Generative model이라고 했으니 vector z에서 x를 생성하는 것으로 생각하고 x의 distribution을 encoding vector를 활용하여 다음과 같이 나타냅니다.  
 
-<img src="https://latex.codecogs.com/svg.latex?\; p_{\theta}(x^{(i)}) = \int p_{\theta}(x^{(i)}|z)p_{\theta}(z)dz " height=45 />
+$$ p_{\theta}(x^{(i)}) = \int p_{\theta}(x^{(i)}\|z)p_{\theta}(z)dz $$
 
 여기서 모든 가능한 z의 분포에 대해 계산할 수 없기에, neural network 형태의 encoder가 등장하게 됩니다.  
-z를 다루기 쉬운 normal distribution으로 가정하고, x를 input으로 하는 이상적인 sampling 함수 <img src="https://latex.codecogs.com/svg.latex?\; q_{\phi}(z|x) " />를 정의하는 것입니다.  
-그리고 이 sampling 함수(이상적인)와 <img src="https://latex.codecogs.com/svg.latex?\; p_{\theta}(z|x) " /> 사이의 KL divergence를 minimize하는 것으로 목적함수를 정의합니다.  
+z를 다루기 쉬운 normal distribution으로 가정하고, x를 input으로 하는 이상적인 sampling 함수 $q_{\phi}(z|x)$를 정의하는 것입니다.  
+그리고 이 sampling 함수(이상적인)와 $p_{\theta}(z|x)$ 사이의 KL divergence를 minimize하는 것으로 목적함수를 정의합니다.  
 
 ![vae_loss2]({{site.baseurl}}/assets/img/post6/vae_loss2.jpg)
 
 ![vae_loss3]({{site.baseurl}}/assets/img/post6/vae_loss3.jpg)
 
-이렇게, 출발은 달랐지만 결국 <img src="https://latex.codecogs.com/svg.latex?\; \textbf{log} p_{\theta}(x) " /> 가 포함된 식이 유도되었고,  
-이상적인 sampling 함수 <img src="https://latex.codecogs.com/svg.latex?\; q_{\phi}(z|x) " /> 가 포함된 term은 직접 계산할 수 없기에, 
-<img src="https://latex.codecogs.com/svg.latex?\; \textbf{log} p_{\theta}(x) " /> 의 lower bound(ELBO)가 VAE의 Loss가 됩니다.  
+이렇게, 출발은 달랐지만 결국 $\textbf{log} p_{\theta}(x) $ 가 포함된 식이 유도되었고,  
+이상적인 sampling 함수 $q_{\phi}(z|x) $ 가 포함된 term은 직접 계산할 수 없기에, 
+$\textbf{log} p_{\theta}(x) $ 의 lower bound(ELBO)가 VAE의 Loss가 됩니다.  
 
 ### Reparameterization Trick
 ![vae_reparam]({{site.baseurl}}/assets/img/post6/vae_reparam.jpg)
 
 encoder를 sampling 함수로 사용하여 z를 sampling하는 부분은 backpropagation 식을 정의 할 때 문제가 될 수 있는데,
 VAE에선 이 부분을 간단한 trick으로 해결합니다.  
-위 그림처럼 normal distribution에서 sampling한 <img src="https://latex.codecogs.com/svg.latex?\; \epsilon \sim N(0,1)  " /> 값과 encoder의 output을 연산하여 z를 계산하게 하는 것으로
-backpropagation에 문제가 없게 하였습니다.
+위 그림처럼 normal distribution에서 sampling한 $\epsilon \sim N(0,1) $ 값과 encoder의 output을 연산하여 z를 계산하게 하는 것으로 backpropagation에 문제가 없게 하였습니다.
 
-이렇게 정의된 VAE는 여러 다양한 task 들에서 활용도가 높지만 단순히 Generative model의 성능 면에서는 GAN에 비해 뛰어나지 못하다는 단점이 있습니다.  
-특히, output 이미지가 전체적으로 blurry한 경향을 보이는데, 이는 Loss에 사용된 MSE term 의 한계로 볼 수 있습니다.
+이렇게 정의된 VAE는 여러 다양한 task 들에서 활용도가 높지만 단순히 Generative model의 성능 면에서는 GAN에 비해 뛰어나지 못하다는 단점이 있습니다. 특히, output 이미지가 전체적으로 blurry한 경향을 보이는데, 이는 Loss에 사용된 MSE term 의 한계로 볼 수 있습니다.
 
 
 ## Reference 
