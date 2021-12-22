@@ -1,0 +1,14 @@
+I"t<p>이번 포스트에선 Data Efficient Learning 관련 연구 몇 가지를 정리해보았습니다.</p>
+
+<p>##</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1703.05175">Prototypical Networks for Few-shot Learning</a>  <br />
+<a href="https://arxiv.org/abs/1703.03400">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</a><br />
+<a href="https://arxiv.org/abs/2003.10580">Meta Pseudo Labels</a></p>
+
+<p>other :<br />
+<a href="https://www.youtube.com/watch?v=GDIT193cdoo&amp;list=PLCNc54m6eBRVqlv07SMzSyMjPDB_lNXMC&amp;index=15">Lecture12 AAA738 SeungryongKim</a></p>
+
+:ET

@@ -1,0 +1,21 @@
+I"�<p>이번 포스트에선 Data Efficient Learning 관련 연구 몇 가지를 정리해보았습니다.</p>
+
+<h2 id="prototypical-networks-for-few-shot-learning">Prototypical Networks for Few shot Learning</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>기존에 학습 데이터에 없었던 새로운 데이터를 few-shot으로 분류하는 few-shot classification task를 수행하는 연구입니다. 새로운 데이터를 기존 학습 데이터와 합쳐서 처음부터 학습하는 방식이 아닌 prototype을 활용한 metric learning 방식을 제안한다.</p>
+
+<h3 id="method">Method</h3>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1703.05175">Prototypical Networks for Few-shot Learning</a>  <br />
+<a href="https://arxiv.org/abs/1703.03400">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</a><br />
+<a href="https://arxiv.org/abs/1711.03213">CyCADA: Cycle Consistent Adversarial Domain Adaptation</a><br />
+<a href="https://arxiv.org/abs/2003.10580">Meta Pseudo Labels</a></p>
+
+<p>other :<br />
+<a href="https://www.youtube.com/watch?v=GDIT193cdoo&amp;list=PLCNc54m6eBRVqlv07SMzSyMjPDB_lNXMC&amp;index=15">Lecture12 AAA738 SeungryongKim</a></p>
+
+:ET

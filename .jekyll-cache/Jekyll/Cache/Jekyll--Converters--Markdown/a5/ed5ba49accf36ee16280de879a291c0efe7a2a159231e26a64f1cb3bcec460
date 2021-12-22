@@ -1,0 +1,59 @@
+I"f<p>이번 포스트에선 Data Efficient Learning 관련 연구 몇 가지를 정리해보았습니다.</p>
+
+<h2 id="prototypical-networks-for-few-shot-learning">Prototypical Networks for Few shot Learning</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>기존에 학습 데이터에 없었던 새로운 데이터를 few-shot으로 분류하는 few-shot classification task를 수행하는 연구입니다. 이 논문에선 새로운 데이터를 기존 학습 데이터와 합쳐서 처음부터 학습하는 방식이 아닌 prototype을 활용한 metric learning 방식을 제안합니다.</p>
+
+<p><img src="/assets/img/post10/fig1.png" /></p>
+
+<p>Neural net을 mapping 함수로 사용하며 few-shot의 경우 embedding 공간안에서 prototype \mathbf{c}_k를 계산하고 zero-shot의 경우 기존에 존재하는 prototype 중 가장 가까운 class로 분류합니다. 이러한 방식을 통해 논문에선 학습데이터의 추가 시나리오에 직관적이고 효율적인 학습 알고리즘을 제안하였다고 볼 수 있을 것 같습니다.</p>
+
+<h3 id="method">Method</h3>
+
+<p>제안된 Method는 크게 prototype을 계산하는 부분과 기존 prototype을 사용해 분류하는 과정으로 나눠집니다.</p>
+
+<h4 id="prototype-계산">Prototype 계산</h4>
+<p><img src="/assets/img/post10/fig2.png" /></p>
+
+<h4 id="class별-probability-계산">Class별 probability 계산</h4>
+<p><img src="/assets/img/post10/fig3.png" /></p>
+
+<p>알고리즘은 K-means clustering의 centroid를 계산하고 membership을 할당하는 과정과 거의 똑같아 보입니다.
+<img src="/assets/img/post10/fig4.png" /></p>
+
+<ol>
+  <li>학습 데이터 샘플링</li>
+  <li>Prototype을 계산하여 분류모델 생성</li>
+  <li>query(학습에 추가할 데이터)에 대해 모든 prototype과의 거리를 계산하고 softmax를 사용해 classification score 계산</li>
+  <li>query classification loss를 사용하여 모델 학습</li>
+</ol>
+
+<p><img src="/assets/img/post10/fig5.png" /></p>
+
+<h2 id="model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</h2>
+
+<h3 id="overview-1">Overview</h3>
+
+<p>MAML은 Optimization based meta-learning의 대표적인 논문이라고 할 수 있습니다.</p>
+
+<p><img src="/assets/img/post10/fig6.png" /></p>
+
+<p>제안 방법은 데이터를 meta-trainset과 meta-testset으로 분리하여 meta-train으로 학습한 meta-learner를 meta-testset으로 fine tuning하였을 때의 성능을 maximize할 수 있도록 meta-learner를 학습하는 방식입니다.</p>
+<h3 id="method-1">Method</h3>
+
+<h2 id="cycada-cycle-consistent-adversarial-domain-adaptation">CyCADA: Cycle Consistent Adversarial Domain Adaptation</h2>
+<h2 id="meta-pseudo-labels">Meta Pseudo Labels</h2>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1703.05175">Prototypical Networks for Few-shot Learning</a>  <br />
+<a href="https://arxiv.org/abs/1703.03400">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</a><br />
+<a href="https://arxiv.org/abs/1711.03213">CyCADA: Cycle Consistent Adversarial Domain Adaptation</a><br />
+<a href="https://arxiv.org/abs/2003.10580">Meta Pseudo Labels</a></p>
+
+<p>other :<br />
+<a href="https://www.youtube.com/watch?v=GDIT193cdoo&amp;list=PLCNc54m6eBRVqlv07SMzSyMjPDB_lNXMC&amp;index=15">Lecture12 AAA738 SeungryongKim</a></p>
+
+:ET

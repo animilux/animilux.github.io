@@ -1,0 +1,12 @@
+I"�<p>이번 포스트에선 Data Efficient Learning 관련 연구 몇 가지를 정리해보았습니다.</p>
+
+<h2 id="reference">Reference</h2>
+<p>paper :<br />
+<a href="https://arxiv.org/abs/1703.05175">Prototypical Networks for Few-shot Learning</a></p>
+
+<p>other :<br />
+<a href="https://www.youtube.com/watch?v=zkeh7Tt9tYQ">PR-302: NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a><br />
+<a href="https://www.youtube.com/watch?v=FSG5bCkNWWo">[Seminar] NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</a><br />
+<a href="https://www.youtube.com/watch?v=SbLiGiHJ_9Q&amp;list=PLCNc54m6eBRVqlv07SMzSyMjPDB_lNXMC&amp;index=11&amp;t=5523s">Lecture8 AAA738 SeungryongKim</a></p>
+
+:ET
