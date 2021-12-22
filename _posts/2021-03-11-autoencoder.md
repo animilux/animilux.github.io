@@ -56,7 +56,7 @@ VAE의 Loss는 위와 같이 정의되고 이를 유도할 때 보통은 log lik
 개인적으로 이상적인 sampling 함수에 실제 sampling 함수를 근사시키는 term에서 출발하는 것이 좀 더 이해하기 쉬운 것 같습니다.  
 먼저, Generative model이라고 했으니 vector z에서 x를 생성하는 것으로 생각하고 x의 distribution을 encoding vector를 활용하여 다음과 같이 나타냅니다.  
 
-$$ p_{\theta}(x^{(i)}) = \int p_{\theta}(x^{(i)}\|z)p_{\theta}(z)dz $$
+@@ p_{\theta}(x^{(i)}) = \int p_{\theta}(x^{(i)}\|z)p_{\theta}(z)dz @@
 
 여기서 모든 가능한 z의 분포에 대해 계산할 수 없기에, neural network 형태의 encoder가 등장하게 됩니다.  
 z를 다루기 쉬운 normal distribution으로 가정하고, x를 input으로 하는 이상적인 sampling 함수 $q_{\phi}(z|x)$를 정의하는 것입니다.  
